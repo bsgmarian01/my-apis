@@ -97,43 +97,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Global/Shared rate limits and keys
-RATE_LIMITS = {}
-STRIPE_LINK = "https://buy.stripe.com/bJe00kcNzgd1dIz2SL6Na00"
-
-def verify_global_limit_and_key(request: Request, x_api_key: Optional[str] = Header(None)):
-    valid_api_keys = set(os.getenv('API_KEYS', '').split(','))
-    if x_api_key and x_api_key in valid_api_keys:
-        return
-
-    client_ip = request.client.host
-    current_time = datetime.now()
-    
-    # Clean up old entries (older than 24 hours)
-    keys_to_remove = [k for k, (count, last_checked) in RATE_LIMITS.items() 
-                      if (current_time - last_checked).days >= 1]
-    for key in keys_to_remove:
-        del RATE_LIMITS[key]
-
-    if client_ip not in RATE_LIMITS:
-        RATE_LIMITS[client_ip] = (1, current_time)
-    else:
-        count, last_checked = RATE_LIMITS[client_ip]
-        RATE_LIMITS[client_ip] = (count + 1, last_checked)
-
-    if RATE_LIMITS[client_ip][0] > 100:
-        raise HTTPException(
-            status_code=402,
-            detail=f"Rate limit exceeded. To get unlimited access and your API key, subscribe at: {STRIPE_LINK}"
-        )
-
 # Mount all sub-apps
 """
     for api in api_dirs:
         main_py_content += f'app.mount("/{api.lower()}", {api.lower()}_app)\n'
 
     # Add HTML Dashboard for the main app
-    main_py_content += """
+    main_py_content += f"""
 @app.get("/", response_class=HTMLResponse, include_in_schema=False)
 async def dashboard():
     html_content = \"\"\"
@@ -146,14 +116,14 @@ async def dashboard():
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
         <style>
-            body {
+            body {{
                 background: radial-gradient(circle at top right, #1e1b4b, #09090b);
-            }
-            .glass-card {
+            }}
+            .glass-card {{
                 background: rgba(30, 30, 45, 0.4);
                 backdrop-filter: blur(10px);
                 border: 1px solid rgba(255, 255, 255, 0.08);
-            }
+            }}
         </style>
     </head>
     <body class="text-gray-100 min-h-screen font-sans antialiased">
@@ -167,22 +137,16 @@ async def dashboard():
                         DevSuite APIs
                     </span>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <input type="text" id="apiKeyInput" placeholder="Enter X-API-Key" class="bg-gray-950 border border-gray-800 rounded-lg px-3 py-1.5 text-sm text-gray-200 focus:outline-none focus:border-indigo-500 w-48 sm:w-64" oninput="saveApiKey()">
-                    <a href="https://buy.stripe.com/bJe00kcNzgd1dIz2SL6Na00" target="_blank" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm px-4 py-2 rounded-lg transition-colors flex items-center gap-2">
-                        <i class="fas fa-credit-card"></i> Get Key
-                    </a>
-                </div>
             </div>
         </header>
 
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
-                    10 powerful microservices in one single endpoint.
+                    {len(api_dirs)} powerful microservices in one single endpoint.
                 </h1>
                 <p class="text-lg text-gray-400">
-                    A suite of high-performance utility APIs designed for developers. Up to 100 free requests per day, or subscribe for unlimited access.
+                    A suite of high-performance utility APIs designed for developers.
                 </p>
             </div>
 
@@ -262,6 +226,14 @@ async def dashboard():
                     path: "/creditcardvalidator/validate",
                     body: JSON.stringify({ card_number: "4111111111111111" }, null, 4)
                 },
+                "currencyunitconverter": {
+                    path: "/currencyunitconverter/convert",
+                    body: JSON.stringify({ amount: 100.0, from_currency: "USD", to_currency: "EUR" }, null, 4)
+                },
+                "datetimeformatchecker": {
+                    path: "/datetimeformatchecker/validate-datetime",
+                    body: JSON.stringify({ date_str: "2026-06-13", format_str: "%Y-%m-%d" }, null, 4)
+                },
                 "emailvalidator": {
                     path: "/emailvalidator/validate",
                     body: JSON.stringify({ email: "hello@world.com", check_domain: true }, null, 4)
@@ -275,8 +247,16 @@ async def dashboard():
                     body: JSON.stringify({ html_content: "<html><body><h1>Hello World</h1><p>Test</p></body></html>" }, null, 4)
                 },
                 "ibanswiftvalidator": {
-                    path: "/ibanswiftvalidator/validate/iban", // fallback path
-                    body: JSON.stringify({ iban: "DE89370400440532013000", swift_code: "INGDDEFF" }, null, 4)
+                    path: "/ibanswiftvalidator/validate/iban",
+                    body: JSON.stringify({ iban: "DE89370400440532013000" }, null, 4)
+                },
+                "isbnvalidator": {
+                    path: "/isbnvalidator/validate-isbn",
+                    body: JSON.stringify({ isbn: "978-3-16-148410-0" }, null, 4)
+                },
+                "jsonkeypathextractor": {
+                    path: "/jsonkeypathextractor/extract",
+                    body: JSON.stringify({ json_data: '{"user": {"profile": {"name": "Alice"}}}', key_path: "user.profile.name" }, null, 4)
                 },
                 "jsonschemavalidator": {
                     path: "/jsonschemavalidator/validate",
@@ -294,7 +274,11 @@ async def dashboard():
                 },
                 "markdowntohtml": {
                     path: "/markdowntohtml/convert",
-                    body: JSON.stringify({ markdown_text: "# Hello\\n\\nThis is **bold** markdown." }, null, 4)
+                    body: JSON.stringify({ markdown_text: "# Hello\\\\n\\\\nThis is **bold** markdown." }, null, 4)
+                },
+                "passwordstrengthanalyzer": {
+                    path: "/passwordstrengthanalyzer/analyze",
+                    body: JSON.stringify({ password: "StrongPassword123!" }, null, 4)
                 },
                 "phonenumbervalidator": {
                     path: "/phonenumbervalidator/validate/",
@@ -306,19 +290,11 @@ async def dashboard():
                 },
                 "yamltojsonconverter": {
                     path: "/yamltojsonconverter/convert",
-                    body: JSON.stringify({ yaml_data: "title: API Suite\\nversion: 1.0\\nenabled: true" }, null, 4)
+                    body: JSON.stringify({ yaml_data: "title: API Suite\\\\nversion: 1.0\\\\nenabled: true" }, null, 4)
                 }
             };
 
             let currentApi = "";
-
-            // Load API key from local storage
-            document.getElementById('apiKeyInput').value = localStorage.getItem('api_key') || '';
-
-            function saveApiKey() {
-                const key = document.getElementById('apiKeyInput').value;
-                localStorage.setItem('api_key', key);
-            }
 
             function openPlayground(apiSlug) {
                 currentApi = apiSlug;
@@ -340,7 +316,6 @@ async def dashboard():
                 const bodyText = document.getElementById('requestBody').value;
                 const responseOutput = document.getElementById('responseOutput');
                 const sendText = document.getElementById('sendText');
-                const apiKey = document.getElementById('apiKeyInput').value;
 
                 sendText.innerText = "Sending...";
                 responseOutput.innerText = "Processing request...";
@@ -350,9 +325,6 @@ async def dashboard():
                     const headers = {
                         "Content-Type": "application/json"
                     };
-                    if (apiKey) {
-                        headers["X-API-Key"] = apiKey;
-                    }
 
                     const response = await fetch(path, {
                         method: "POST",
@@ -365,8 +337,6 @@ async def dashboard():
 
                     if (response.status === 200) {
                         responseOutput.className = "bg-gray-950 border border-gray-800 rounded-lg p-3 font-mono text-sm text-green-400 overflow-x-auto min-h-[100px]";
-                    } else if (response.status === 402) {
-                        responseOutput.className = "bg-gray-950 border border-gray-800 rounded-lg p-3 font-mono text-sm text-red-400 overflow-x-auto min-h-[100px]";
                     } else {
                         responseOutput.className = "bg-gray-950 border border-gray-800 rounded-lg p-3 font-mono text-sm text-orange-400 overflow-x-auto min-h-[100px]";
                     }
