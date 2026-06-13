@@ -11,7 +11,6 @@ app = FastAPI(
     version="1.0.0"
 )
 
-RATE_LIMITS: Dict[str, int] = {}
 
 class DateTimeValidationRequest(BaseModel):
     """
@@ -27,31 +26,6 @@ class ValidationResponse(BaseModel):
     is_valid: bool
     message: str
 
-def verify_api_key_and_rate_limit(request: Request, x_api_key: Optional[str] = Header(None)) -> None:
-    """
-    Dependency function to verify API key and apply rate limiting based on client IP.
-
-    Args:
-        request (Request): The incoming request object.
-        x_api_key (Optional[str]): The API key provided in the X-API-Key header.
-
-    Raises:
-        HTTPException: If the rate limit is exceeded and no valid API key is provided.
-    """
-    api_keys = os.getenv('API_KEYS', '').split(',')
-    if x_api_key and x_api_key in api_keys:
-        return  # Bypass rate limits for valid API keys
-
-    client_ip = request.client.host
-    current_requests = RATE_LIMITS.get(client_ip, 0)
-
-    if current_requests >= 100:
-        raise HTTPException(
-            status_code=402,
-            detail='Rate limit exceeded. To get unlimited access and your API key, subscribe at: https://buy.stripe.com/bJe00kcNzgd1dIz2SL6Na00'
-        )
-
-    RATE_LIMITS[client_ip] = current_requests + 1
 
 @app.get('/', include_in_schema=False)
 async def root():
@@ -63,7 +37,7 @@ async def root():
     """
     return RedirectResponse(url='/docs')
 
-@app.post('/validate-datetime', response_model=ValidationResponse, dependencies=[Depends(verify_api_key_and_rate_limit)])
+@app.post('/validate-datetime', response_model=ValidationResponse)
 async def validate_datetime(request_data: DateTimeValidationRequest) -> ValidationResponse:
     """
     Validates a given date-time string against a specified format.

@@ -3,7 +3,6 @@ from pydantic import BaseModel
 from typing import Optional
 import os
 from datetime import datetime, timedelta
-from collections import defaultdict
 from fastapi.responses import RedirectResponse
 
 app = FastAPI(
@@ -12,7 +11,6 @@ app = FastAPI(
 )
 
 # In-memory rate limiting dictionary
-RATE_LIMITS = defaultdict(lambda: {'count': 0, 'last_reset': datetime.now()})
 
 # Predefined conversion rates (fixed for demonstration purposes)
 CONVERSION_RATES = {
@@ -45,38 +43,6 @@ class ConversionResponse(BaseModel):
     converted_amount: float
     currency_rate: float
 
-def verify_api_key_and_rate_limit(request: Request, x_api_key: Optional[str] = Header(None)) -> None:
-    """
-    FastAPI dependency to validate API key and enforce rate limiting.
-
-    Args:
-        request (Request): The incoming HTTP request.
-        x_api_key (Optional[str]): The API key provided in the 'X-API-Key' header, if any.
-
-    Raises:
-        HTTPException: If the API key is invalid or the rate limit is exceeded.
-    """
-    valid_keys = set(os.getenv('API_KEYS', '').split(','))
-    client_ip = request.client.host
-
-    # Check for a valid API key
-    if x_api_key and x_api_key in valid_keys:
-        return  # Bypass rate limiting for valid API keys
-
-    # Rate limit logic for unauthenticated requests
-    current_time = datetime.now()
-    reset_time = RATE_LIMITS[client_ip]['last_reset'] + timedelta(days=1)
-
-    if current_time > reset_time:
-        RATE_LIMITS[client_ip] = {'count': 0, 'last_reset': current_time}
-
-    if RATE_LIMITS[client_ip]['count'] >= 100:
-        raise HTTPException(
-            status_code=402,
-            detail='Rate limit exceeded. To get unlimited access and your API key, subscribe at: https://buy.stripe.com/bJe00kcNzgd1dIz2SL6Na00'
-        )
-
-    RATE_LIMITS[client_ip]['count'] += 1
 
 @app.get("/", include_in_schema=False)
 def redirect_to_docs():
@@ -88,7 +54,7 @@ def redirect_to_docs():
     """
     return RedirectResponse(url="/docs")
 
-@app.post("/convert", dependencies=[Depends(verify_api_key_and_rate_limit)])
+@app.post("/convert")
 def convert_currency(request_data: ConversionRequest) -> ConversionResponse:
     """
     Convert an amount from one currency to another using predefined conversion rates.

@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 import pytest
 import os
-from main import app, RATE_LIMITS
+from main import app
 
 @pytest.fixture(scope="module")
 def client():
@@ -15,7 +15,6 @@ def test_convert_html_to_plain_text(client: TestClient):
     Args:
         client (TestClient): The FastAPI test client fixture.
     """
-    RATE_LIMITS.clear()
     response = client.post(
         "/convert",
         json={"html_content": "<div><p>Hello, <strong>world</strong>!</p></div>"}
@@ -30,7 +29,6 @@ def test_convert_html_with_empty_string(client: TestClient):
     Args:
         client (TestClient): The FastAPI test client fixture.
     """
-    RATE_LIMITS.clear()
     response = client.post(
         "/convert",
         json={"html_content": ""}
@@ -45,7 +43,6 @@ def test_convert_html_with_invalid_json(client: TestClient):
     Args:
         client (TestClient): The FastAPI test client fixture.
     """
-    RATE_LIMITS.clear()
     response = client.post(
         "/convert",
         json={"html_content_not": "<div><p>Hello, <strong>world</strong>!</p></div>"}
@@ -60,7 +57,6 @@ def test_convert_html_with_invalid_html(client: TestClient):
     Args:
         client (TestClient): The FastAPI test client fixture.
     """
-    RATE_LIMITS.clear()
     response = client.post(
         "/convert",
         json={"html_content": "<div><p>Hello, <strong>world!</p></div>"}
@@ -68,40 +64,4 @@ def test_convert_html_with_invalid_html(client: TestClient):
     assert response.status_code == 200
     assert response.json() == {"plain_text": "Hello, world!"}
 
-def test_rate_limit_exceeded(client: TestClient):
-    """
-    Tests the rate limit exceeding scenario.
-    
-    Args:
-        client (TestClient): The FastAPI test client fixture.
-    """
-    RATE_LIMITS.clear()
-    for _ in range(100):
-        response = client.post(
-            "/convert",
-            json={"html_content": "<div><p>Hello, <strong>world</strong>!</p></div>"}
-        )
-        assert response.status_code == 200
-    
-    response = client.post(
-        "/convert",
-        json={"html_content": "<div><p>Hello, <strong>world</strong>!</p></div>"}
-    )
-    assert response.status_code == 402
 
-def test_api_key_bypasses_rate_limit(client: TestClient):
-    """
-    Tests that a valid API key bypasses the rate limit.
-    
-    Args:
-        client (TestClient): The FastAPI test client fixture.
-    """
-    RATE_LIMITS.clear()
-    os.environ['API_KEYS'] = 'valid-api-key'
-    for _ in range(150):
-        response = client.post(
-            "/convert",
-            json={"html_content": "<div><p>Hello, <strong>world</strong>!</p></div>"},
-            headers={'X-API-Key': 'valid-api-key'}
-        )
-        assert response.status_code == 200

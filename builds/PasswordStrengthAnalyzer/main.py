@@ -3,7 +3,6 @@ from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 import os
 from datetime import datetime
-from collections import defaultdict
 
 app = FastAPI(
     title="Password Strength Analyzer API",
@@ -12,24 +11,9 @@ app = FastAPI(
 )
 
 # In-memory rate limit dictionary
-RATE_LIMITS = defaultdict(int)
 
 # Dependency function for API key verification and rate limiting
-def verify_api_key_and_rate_limit(request: Request, x_api_key: str = Header(None)):
-    valid_keys = os.getenv('API_KEYS', '').split(',')
-    
-    if x_api_key in valid_keys:
-        return  # Bypass rate limits
-    
-    client_ip = request.client.host
-    
-    # Check and update rate limit for the client IP
-    if RATE_LIMITS[client_ip] >= 100:
-        raise HTTPException(status_code=402, detail='Rate limit exceeded. To get unlimited access and your API key, subscribe at: https://buy.stripe.com/bJe00kcNzgd1dIz2SL6Na00')
-    
-    RATE_LIMITS[client_ip] += 1
 
-# Root endpoint to redirect to the interactive documentation
 @app.get("/", include_in_schema=False)
 def root():
     return RedirectResponse(url="/docs")
@@ -88,7 +72,7 @@ def evaluate_password_strength(password: str) -> dict:
     return {"strength_score": max(0, score), "feedback": feedback}
 
 # POST endpoint to analyze password strength
-@app.post("/analyze", response_model=PasswordResponse, dependencies=[Depends(verify_api_key_and_rate_limit)])
+@app.post("/analyze", response_model=PasswordResponse)
 def analyze_password(request: PasswordRequest):
     result = evaluate_password_strength(request.password)
     return result

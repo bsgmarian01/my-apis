@@ -9,4 +9,4 @@ pinned: false
 ---
 
 # Yamltojsonconverter API
-Auto-deployed micro-API with Stripe key verification and rate limiting.
+Auto-deployed micro-API service.

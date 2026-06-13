@@ -3,7 +3,6 @@ from pydantic import BaseModel
 from fastapi.responses import RedirectResponse
 import os
 from datetime import date
-from collections import defaultdict
 
 app = FastAPI(
     title="Credit Card Validator API",
@@ -11,36 +10,7 @@ app = FastAPI(
 )
 
 # In-memory rate limit storage
-RATE_LIMITS = defaultdict(int)
 
-def verify_api_key_and_rate_limit(request: Request, x_api_key: str = Header(None)):
-    """
-    Dependency function to verify API key and apply rate limiting.
-    
-    Args:
-        request (Request): The incoming request object.
-        x_api_key (str, optional): The X-API-Key header value. Defaults to None.
-
-    Raises:
-        HTTPException: If the rate limit is exceeded and no valid API key is provided.
-    """
-    # Load API keys dynamically from environment variable
-    api_keys = os.getenv('API_KEYS', '').split(',')
-    
-    if x_api_key in api_keys:
-        return  # Bypass rate limiting for valid API keys
-    
-    client_ip = request.client.host
-    today = date.today()
-    key = f"{client_ip}-{today}"
-    
-    RATE_LIMITS[key] += 1
-    
-    if RATE_LIMITS[key] > 100:
-        raise HTTPException(
-            status_code=402,
-            detail="Rate limit exceeded. To get unlimited access and your API key, subscribe at: https://buy.stripe.com/bJe00kcNzgd1dIz2SL6Na00"
-        )
 
 class CreditCardRequest(BaseModel):
     """
@@ -120,7 +90,7 @@ def root():
     """
     return RedirectResponse(url='/docs')
 
-@app.post('/validate', response_model=CreditCardResponse, dependencies=[Depends(verify_api_key_and_rate_limit)])
+@app.post('/validate', response_model=CreditCardResponse)
 def validate_credit_card(request_body: CreditCardRequest) -> CreditCardResponse:
     """
     Validates a credit card number using the Luhn algorithm and identifies its type.

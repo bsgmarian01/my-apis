@@ -54,39 +54,14 @@ def is_valid_swift_code(swift: str) -> bool:
     return True
 
 # Rate limiting and API key validation dependency
-RATE_LIMITS: Dict[str, tuple[int, datetime]] = {}
 
-def verify_api_key_and_rate_limit(request: Request, x_api_key: Optional[str] = Header(None)):
-    api_keys_str = os.getenv('API_KEYS', '')
-    valid_api_keys = set(api_keys_str.split(','))
-
-    if x_api_key in valid_api_keys:
-        return
-
-    client_ip = request.client.host
-    current_time = datetime.utcnow()
-
-    # Clean up old entries (simple cleanup for demonstration)
-    keys_to_delete = [key for key, value in RATE_LIMITS.items() if (current_time - value[1]).days > 1]
-    for key in keys_to_delete:
-        del RATE_LIMITS[key]
-
-    if client_ip not in RATE_LIMITS:
-        RATE_LIMITS[client_ip] = (0, current_time)
-
-    count, last_reset = RATE_LIMITS[client_ip]
-
-    if count >= 100:
-        raise HTTPException(status_code=402, detail='Rate limit exceeded. To get unlimited access and your API key, subscribe at: https://buy.stripe.com/bJe00kcNzgd1dIz2SL6Na00')
-
-    RATE_LIMITS[client_ip] = (count + 1, last_reset)
 
 @app.get("/", include_in_schema=False)
 def root():
     return RedirectResponse(url="/docs")
 
 # Endpoints
-@app.post("/validate/iban", response_model=ValidationResponse, dependencies=[Depends(verify_api_key_and_rate_limit)])
+@app.post("/validate/iban", response_model=ValidationResponse)
 async def validate_iban(request: IBANRequest):
     """
     Validate an IBAN against the relevant country format rules.
@@ -96,7 +71,7 @@ async def validate_iban(request: IBANRequest):
     else:
         raise HTTPException(status_code=400, detail="Invalid IBAN.")
 
-@app.post("/validate/swift", response_model=ValidationResponse, dependencies=[Depends(verify_api_key_and_rate_limit)])
+@app.post("/validate/swift", response_model=ValidationResponse)
 async def validate_swift(request: SwiftRequest):
     """
     Validate a BIC/SWIFT code against the standard format.

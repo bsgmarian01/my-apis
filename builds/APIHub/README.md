@@ -1,5 +1,5 @@
 ---
-title: Devsuite-apis
+title: API Suite
 emoji: 🚀
 colorFrom: indigo
 colorTo: blue
@@ -8,5 +8,5 @@ app_port: 7860
 pinned: false
 ---
 
-# Devsuite-apis API
-Auto-deployed micro-API with Stripe key verification and rate limiting.
+# Developer API Suite
+All-in-one suite of 10 micro-services with unified landing page and monetization!

@@ -12,7 +12,6 @@ app = FastAPI(
 )
 
 # In-memory rate limiting dictionary
-RATE_LIMITS = {}
 
 class EmailRequest(BaseModel):
     """
@@ -27,32 +26,6 @@ class EmailResponse(BaseModel):
     valid: bool
     message: str
 
-def verify_api_key_and_rate_limit(request: Request, x_api_key: Optional[str] = Header(None)):
-    """
-    Dependency to validate API key and enforce rate limits.
-    """
-    # Load valid API keys from environment variable every time this function is called
-    API_KEYS = set(os.getenv('API_KEYS', '').split(','))
-    
-    if x_api_key and x_api_key in API_KEYS:
-        # Valid API key provided, bypass rate limits
-        return
-    
-    client_ip = request.client.host
-    today = date.today()
-    
-    # Check or initialize the rate limit for the client IP
-    if client_ip not in RATE_LIMITS:
-        RATE_LIMITS[client_ip] = {}
-    
-    if today not in RATE_LIMITS[client_ip]:
-        RATE_LIMITS[client_ip][today] = 0
-    
-    if RATE_LIMITS[client_ip][today] >= 100:
-        raise HTTPException(status_code=402, detail='Rate limit exceeded. To get unlimited access and your API key, subscribe at: https://buy.stripe.com/bJe00kcNzgd1dIz2SL6Na00')
-    
-    # Increment the rate limit for today
-    RATE_LIMITS[client_ip][today] += 1
 
 @app.get("/", include_in_schema=False)
 def root():
@@ -61,7 +34,7 @@ def root():
     """
     return RedirectResponse(url="/docs")
 
-@app.post("/validate-email", response_model=EmailResponse, dependencies=[Depends(verify_api_key_and_rate_limit)])
+@app.post("/validate-email", response_model=EmailResponse)
 async def validate_email(request: EmailRequest) -> EmailResponse:
     """
     Validates whether a given email address conforms to standard email formatting rules.

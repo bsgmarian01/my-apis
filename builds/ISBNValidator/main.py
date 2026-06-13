@@ -11,7 +11,6 @@ app = FastAPI(
 )
 
 # In-memory rate limiting dictionary
-RATE_LIMITS: Dict[str, int] = {}
 
 class ISBNValidationRequest(BaseModel):
     isbn: str
@@ -21,35 +20,6 @@ class ISBNValidationResponse(BaseModel):
     message: str
     type: Optional[str] = None  # Make the 'type' field optional and default it to None
 
-def verify_api_key_and_rate_limit(request: Request, x_api_key: Optional[str] = Header(None)):
-    """
-    Dependency function to verify API key and enforce rate limiting.
-    
-    Args:
-        request (Request): The incoming request object.
-        x_api_key (Optional[str]): The API key provided in the X-API-Key header.
-        
-    Raises:
-        HTTPException: If the API key is invalid or if the rate limit is exceeded.
-    """
-    valid_api_keys = set(os.getenv('API_KEYS', '').split(','))
-    
-    if x_api_key and x_api_key in valid_api_keys:
-        return
-    
-    client_ip = request.client.host
-    today = date.today()
-    
-    if (client_ip, today) not in RATE_LIMITS:
-        RATE_LIMITS[(client_ip, today)] = 0
-        
-    if RATE_LIMITS[(client_ip, today)] >= 100:
-        raise HTTPException(
-            status_code=402,
-            detail='Rate limit exceeded. To get unlimited access and your API key, subscribe at: https://buy.stripe.com/bJe00kcNzgd1dIz2SL6Na00'
-        )
-        
-    RATE_LIMITS[(client_ip, today)] += 1
 
 def is_valid_isbn_10(isbn: str) -> bool:
     """
@@ -94,7 +64,7 @@ def is_valid_isbn_13(isbn: str) -> bool:
     return int(isbn[-1]) == check_digit
 
 @app.post("/validate-isbn", response_model=ISBNValidationResponse)
-def validate_isbn(request: Request, isbn_data: ISBNValidationRequest, _: None = Depends(verify_api_key_and_rate_limit)):
+def validate_isbn(request: Request, isbn_data: ISBNValidationRequest):
     """
     Validates an ISBN number to ensure it is correctly formatted and the checksum is valid.
     

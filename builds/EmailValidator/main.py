@@ -39,29 +39,7 @@ class EmailValidationResponse(BaseModel):
     message: str
 
 # In-memory rate limit storage
-RATE_LIMITS = {}
 
-def verify_api_key_and_rate_limit(request: Request, x_api_key: Optional[str] = Header(None)):
-    valid_api_keys = os.getenv('API_KEYS', '').split(',')
-    
-    if x_api_key and x_api_key in valid_api_keys:
-        # Bypass rate limits for valid API keys
-        return
-    
-    client_ip = request.client.host
-    current_time = datetime.now()
-    
-    if client_ip not in RATE_LIMITS:
-        RATE_LIMITS[client_ip] = []
-    
-    # Remove outdated timestamps (more than 24 hours old)
-    RATE_LIMITS[client_ip] = [timestamp for timestamp in RATE_LIMITS[client_ip] if current_time - timestamp < timedelta(days=1)]
-    
-    if len(RATE_LIMITS[client_ip]) >= 100:
-        raise HTTPException(status_code=402, detail='Rate limit exceeded. To get unlimited access and your API key, subscribe at: https://buy.stripe.com/bJe00kcNzgd1dIz2SL6Na00')
-    
-    # Record the current request
-    RATE_LIMITS[client_ip].append(current_time)
 
 def domain_exists(domain: str) -> bool:
     """
@@ -83,7 +61,7 @@ def domain_exists(domain: str) -> bool:
 def redirect_to_docs():
     return RedirectResponse(url="/docs")
 
-@app.post("/validate", response_model=EmailValidationResponse, dependencies=[Depends(verify_api_key_and_rate_limit)])
+@app.post("/validate", response_model=EmailValidationResponse)
 def validate_email(request: EmailValidationRequest) -> Dict[str, bool]:
     """
     Validates an email address for proper formatting and optional DNS domain existence check.

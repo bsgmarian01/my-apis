@@ -5,12 +5,10 @@ from datetime import datetime, timedelta
 from fastapi import FastAPI, Request, HTTPException, Depends, Header
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
-from collections import defaultdict
 
 app = FastAPI(title="JSON Key Path Extractor", description="This API allows developers to extract specific values from a JSON structure using a specified key path.")
 
 # In-memory rate limiting dictionary
-RATE_LIMITS: Dict[str, int] = defaultdict(int)
 LIMIT_REQUESTS_PER_DAY = 100
 
 class ExtractionRequest(BaseModel):
@@ -21,25 +19,6 @@ class ExtractionResponse(BaseModel):
     value: Optional[str]
     status: str
 
-def verify_api_key_and_rate_limit(request: Request, x_api_key: Optional[str] = Header(None)):
-    """
-    Dependency function to verify API key and apply rate limiting.
-    
-    Checks if a valid API key is provided. If not, it applies rate limiting based on the client's IP address.
-    """
-    api_keys = set(os.getenv('API_KEYS', '').split(','))
-    ip_address = request.client.host
-    
-    if x_api_key in api_keys:
-        return  # Bypass rate limits for valid API keys
-    
-    today = datetime.now().date()
-    key = f"{ip_address}_{today}"
-    
-    if RATE_LIMITS[key] >= LIMIT_REQUESTS_PER_DAY:
-        raise HTTPException(status_code=402, detail='Rate limit exceeded. To get unlimited access and your API key, subscribe at: https://buy.stripe.com/bJe00kcNzgd1dIz2SL6Na00')
-    
-    RATE_LIMITS[key] += 1
 
 @app.get("/", include_in_schema=False)
 def root():
@@ -48,7 +27,7 @@ def root():
     """
     return RedirectResponse(url="/docs")
 
-@app.post("/extract", response_model=ExtractionResponse, dependencies=[Depends(verify_api_key_and_rate_limit)])
+@app.post("/extract", response_model=ExtractionResponse)
 def extract_value(request: ExtractionRequest):
     """
     Extracts a value from a JSON object using a specified key path.
