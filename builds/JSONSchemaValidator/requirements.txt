@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+pytest
+starlette[http]
+pydantic
+jsonschema
+httpx

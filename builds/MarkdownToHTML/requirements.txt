@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+pytest
+markdown2
+python-dotenv
+httpx  # Added httpx dependency
