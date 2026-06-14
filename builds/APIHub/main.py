@@ -8,21 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 # Import all sub-apps
-from apps.creditcardvalidator import app as creditcardvalidator_app
-from apps.currencyunitconverter import app as currencyunitconverter_app
-from apps.datetimeformatchecker import app as datetimeformatchecker_app
-from apps.emailvalidator import app as emailvalidator_app
-from apps.emailvalidatorapi import app as emailvalidatorapi_app
-from apps.htmltoplaintext import app as htmltoplaintext_app
-from apps.ibanswiftvalidator import app as ibanswiftvalidator_app
-from apps.isbnvalidator import app as isbnvalidator_app
-from apps.jsonkeypathextractor import app as jsonkeypathextractor_app
-from apps.jsonschemavalidator import app as jsonschemavalidator_app
-from apps.markdowntohtml import app as markdowntohtml_app
-from apps.passwordstrengthanalyzer import app as passwordstrengthanalyzer_app
-from apps.phonenumbervalidator import app as phonenumbervalidator_app
-from apps.xmltojsonconverter import app as xmltojsonconverter_app
-from apps.yamltojsonconverter import app as yamltojsonconverter_app
+from apps.advancedquantitativeriskratiocalculator import app as advancedquantitativeriskratiocalculator_app
 
 app = FastAPI(
     title="Developer API Suite",
@@ -39,21 +25,7 @@ app.add_middleware(
 )
 
 # Mount all sub-apps
-app.mount("/creditcardvalidator", creditcardvalidator_app)
-app.mount("/currencyunitconverter", currencyunitconverter_app)
-app.mount("/datetimeformatchecker", datetimeformatchecker_app)
-app.mount("/emailvalidator", emailvalidator_app)
-app.mount("/emailvalidatorapi", emailvalidatorapi_app)
-app.mount("/htmltoplaintext", htmltoplaintext_app)
-app.mount("/ibanswiftvalidator", ibanswiftvalidator_app)
-app.mount("/isbnvalidator", isbnvalidator_app)
-app.mount("/jsonkeypathextractor", jsonkeypathextractor_app)
-app.mount("/jsonschemavalidator", jsonschemavalidator_app)
-app.mount("/markdowntohtml", markdowntohtml_app)
-app.mount("/passwordstrengthanalyzer", passwordstrengthanalyzer_app)
-app.mount("/phonenumbervalidator", phonenumbervalidator_app)
-app.mount("/xmltojsonconverter", xmltojsonconverter_app)
-app.mount("/yamltojsonconverter", yamltojsonconverter_app)
+app.mount("/advancedquantitativeriskratiocalculator", advancedquantitativeriskratiocalculator_app)
 
 @app.get("/", response_class=HTMLResponse, include_in_schema=False)
 async def dashboard():
@@ -94,7 +66,7 @@ async def dashboard():
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
-                    15 powerful microservices in one single endpoint.
+                    1 powerful microservices in one single endpoint.
                 </h1>
                 <p class="text-lg text-gray-400">
                     A suite of high-performance utility APIs designed for developers.
@@ -103,301 +75,21 @@ async def dashboard():
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     
-                <!-- Card for CreditCardValidator -->
+                <!-- Card for AdvancedQuantitativeRiskRatioCalculator -->
                 <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
                     <div>
                         <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">CreditCardValidator</span>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">AdvancedQuantitativeRiskRatioCalculator</span>
                             <span class="text-xs text-gray-500">Active</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Credit Card Validator</h3>
+                        <h3 class="text-xl font-bold text-white mb-2">Advanced Quantitative Risk Ratio Calculator</h3>
                         <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
                     </div>
                     <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
-                        <a href="/creditcardvalidator/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+                        <a href="/advancedquantitativeriskratiocalculator/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
                             API Docs <i class="fas fa-external-link-alt text-xs"></i>
                         </a>
-                        <button onclick="openPlayground('creditcardvalidator')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
-                            Try It
-                        </button>
-                    </div>
-                </div>
-        
-                <!-- Card for CurrencyUnitConverter -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">CurrencyUnitConverter</span>
-                            <span class="text-xs text-gray-500">Active</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Currency Unit Converter</h3>
-                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
-                    </div>
-                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
-                        <a href="/currencyunitconverter/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
-                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
-                        </a>
-                        <button onclick="openPlayground('currencyunitconverter')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
-                            Try It
-                        </button>
-                    </div>
-                </div>
-        
-                <!-- Card for DateTimeFormatChecker -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">DateTimeFormatChecker</span>
-                            <span class="text-xs text-gray-500">Active</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Date Time Format Checker</h3>
-                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
-                    </div>
-                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
-                        <a href="/datetimeformatchecker/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
-                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
-                        </a>
-                        <button onclick="openPlayground('datetimeformatchecker')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
-                            Try It
-                        </button>
-                    </div>
-                </div>
-        
-                <!-- Card for EmailValidator -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">EmailValidator</span>
-                            <span class="text-xs text-gray-500">Active</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Email Validator</h3>
-                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
-                    </div>
-                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
-                        <a href="/emailvalidator/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
-                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
-                        </a>
-                        <button onclick="openPlayground('emailvalidator')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
-                            Try It
-                        </button>
-                    </div>
-                </div>
-        
-                <!-- Card for EmailValidatorAPI -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">EmailValidatorAPI</span>
-                            <span class="text-xs text-gray-500">Active</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Email Validator A P I</h3>
-                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
-                    </div>
-                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
-                        <a href="/emailvalidatorapi/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
-                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
-                        </a>
-                        <button onclick="openPlayground('emailvalidatorapi')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
-                            Try It
-                        </button>
-                    </div>
-                </div>
-        
-                <!-- Card for HTMLToPlainText -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">HTMLToPlainText</span>
-                            <span class="text-xs text-gray-500">Active</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">H T M L To Plain Text</h3>
-                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
-                    </div>
-                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
-                        <a href="/htmltoplaintext/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
-                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
-                        </a>
-                        <button onclick="openPlayground('htmltoplaintext')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
-                            Try It
-                        </button>
-                    </div>
-                </div>
-        
-                <!-- Card for IBANSwiftValidator -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">IBANSwiftValidator</span>
-                            <span class="text-xs text-gray-500">Active</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">I B A N Swift Validator</h3>
-                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
-                    </div>
-                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
-                        <a href="/ibanswiftvalidator/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
-                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
-                        </a>
-                        <button onclick="openPlayground('ibanswiftvalidator')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
-                            Try It
-                        </button>
-                    </div>
-                </div>
-        
-                <!-- Card for ISBNValidator -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">ISBNValidator</span>
-                            <span class="text-xs text-gray-500">Active</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">I S B N Validator</h3>
-                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
-                    </div>
-                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
-                        <a href="/isbnvalidator/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
-                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
-                        </a>
-                        <button onclick="openPlayground('isbnvalidator')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
-                            Try It
-                        </button>
-                    </div>
-                </div>
-        
-                <!-- Card for JSONKeyPathExtractor -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">JSONKeyPathExtractor</span>
-                            <span class="text-xs text-gray-500">Active</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">J S O N Key Path Extractor</h3>
-                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
-                    </div>
-                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
-                        <a href="/jsonkeypathextractor/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
-                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
-                        </a>
-                        <button onclick="openPlayground('jsonkeypathextractor')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
-                            Try It
-                        </button>
-                    </div>
-                </div>
-        
-                <!-- Card for JSONSchemaValidator -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">JSONSchemaValidator</span>
-                            <span class="text-xs text-gray-500">Active</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">J S O N Schema Validator</h3>
-                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
-                    </div>
-                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
-                        <a href="/jsonschemavalidator/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
-                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
-                        </a>
-                        <button onclick="openPlayground('jsonschemavalidator')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
-                            Try It
-                        </button>
-                    </div>
-                </div>
-        
-                <!-- Card for MarkdownToHTML -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">MarkdownToHTML</span>
-                            <span class="text-xs text-gray-500">Active</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Markdown To H T M L</h3>
-                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
-                    </div>
-                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
-                        <a href="/markdowntohtml/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
-                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
-                        </a>
-                        <button onclick="openPlayground('markdowntohtml')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
-                            Try It
-                        </button>
-                    </div>
-                </div>
-        
-                <!-- Card for PasswordStrengthAnalyzer -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">PasswordStrengthAnalyzer</span>
-                            <span class="text-xs text-gray-500">Active</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Password Strength Analyzer</h3>
-                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
-                    </div>
-                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
-                        <a href="/passwordstrengthanalyzer/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
-                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
-                        </a>
-                        <button onclick="openPlayground('passwordstrengthanalyzer')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
-                            Try It
-                        </button>
-                    </div>
-                </div>
-        
-                <!-- Card for PhoneNumberValidator -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">PhoneNumberValidator</span>
-                            <span class="text-xs text-gray-500">Active</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Phone Number Validator</h3>
-                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
-                    </div>
-                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
-                        <a href="/phonenumbervalidator/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
-                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
-                        </a>
-                        <button onclick="openPlayground('phonenumbervalidator')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
-                            Try It
-                        </button>
-                    </div>
-                </div>
-        
-                <!-- Card for XMLToJsonConverter -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">XMLToJsonConverter</span>
-                            <span class="text-xs text-gray-500">Active</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">X M L To Json Converter</h3>
-                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
-                    </div>
-                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
-                        <a href="/xmltojsonconverter/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
-                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
-                        </a>
-                        <button onclick="openPlayground('xmltojsonconverter')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
-                            Try It
-                        </button>
-                    </div>
-                </div>
-        
-                <!-- Card for YAMLToJsonConverter -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">YAMLToJsonConverter</span>
-                            <span class="text-xs text-gray-500">Active</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Y A M L To Json Converter</h3>
-                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
-                    </div>
-                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
-                        <a href="/yamltojsonconverter/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
-                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
-                        </a>
-                        <button onclick="openPlayground('yamltojsonconverter')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
+                        <button onclick="openPlayground('advancedquantitativeriskratiocalculator')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
                             Try It
                         </button>
                     </div>

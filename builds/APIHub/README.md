@@ -9,4 +9,4 @@ pinned: false
 ---
 
 # Developer API Suite
-All-in-one suite of 10 micro-services with unified landing page and monetization!
+All-in-one suite of 1 micro-services with unified landing page!
