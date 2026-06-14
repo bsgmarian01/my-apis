@@ -1,0 +1,544 @@
+{
+  "ideas": [
+    {
+      "id": "gh_4644589469",
+      "title": "Allow upgrading edition in aws_directory_service_directory",
+      "description": "### Description\n\nThe \"edition\" attribute in aws_directory_service_directory is marked as \"ForceNew\". This means that changing from \"standarad\" edition to \"enterprise\" edition will destroy and recreate the directory, which will delete all of the data in the directory. \n\nHowever, there is an API for upgrading from Standard to Enterprise: https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_upgrade_edition.html\n\nthe provider should allow you to do this upgrade without having to des...",
+      "source": "GitHub",
+      "url": "https://github.com/hashicorp/terraform-provider-aws/issues/48366",
+      "timestamp": "2026-06-11T22:14:25Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4640887422",
+      "title": "Richer portfolio metrics in daily paper-trading reports",
+      "description": "## Problem\r\n\r\nDaily markdown reports use hand-rolled Sharpe/drawdown helpers. Institutional-style metrics (Calmar, Sortino, rolling Sharpe) would improve report value.\r\n\r\n## User stories\r\n\r\n- As a paper-trading user, I want Calmar, Sortino, rolling Sharpe in daily reports.\r\n- As a maintainer, I want metrics via QuantStats or empyrical, not duplicated math.\r\n\r\n## Acceptance criteria\r\n\r\n- [ ] Portfolio metrics reporter module wrapping QuantStats or empyrical\r\n- [ ] Integrated into daily job report...",
+      "source": "GitHub",
+      "url": "https://github.com/trovlunde/stock_analyzer/issues/7",
+      "timestamp": "2026-06-11T13:24:51Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4632018357",
+      "title": "Feature request: Add MCP support for QuickBooks staged transactions / receipt-review entities",
+      "description": "Please add MCP tool support for QuickBooks Online **staged transactions**, especially receipt-capture / receipt-review entities created from mobile uploaded receipt photos.\n\nThe current MCP server exposes public QBO entities such as `Purchase`, `Bill`, and `Attachable`, but receipts uploaded through the QuickBooks mobile/web receipt workflow do not appear reliably through `search_attachables` or normal transaction searches until they are reviewed, added, or matched.\n\nThis means an MCP client can...",
+      "source": "GitHub",
+      "url": "https://github.com/intuit/quickbooks-online-mcp-server/issues/70",
+      "timestamp": "2026-06-10T14:09:09Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4620542024",
+      "title": "\"Platform\" property of remote servers is never set",
+      "description": "### Prerequisites\n\n- [x] I searched [open issues](https://github.com/pewdiepie-archdaemon/odysseus/issues?q=is%3Aissue+is%3Aopen) and [discussions](https://github.com/pewdiepie-archdaemon/odysseus/discussions) and did not find an existing report of this bug.\n- [x] This is **not** a security vulnerability. (Vulnerabilities go to [GitHub Security Advisories](https://github.com/pewdiepie-archdaemon/odysseus/security/advisories/new) \u2014 see [SECURITY.md](https://github.com/pewdiepie-archdaemon/odysseu...",
+      "source": "GitHub",
+      "url": "https://github.com/pewdiepie-archdaemon/odysseus/issues/3619",
+      "timestamp": "2026-06-09T09:04:21Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4619844886",
+      "title": "Missing static map data for new \"Icebreaker\" map (console warn on /tasks)",
+      "description": "## Summary\n\nThe tarkov.dev API now returns the new **Icebreaker** map (added in the May 2026 EFT patch), but our local static map data in `app/data/maps.json` has no `icebreaker` entry. This produces a non-fatal console warning:\n\n```\n[ClientLogsApi] Client log {\n  args: [ '[MetadataStore] Static SVG data not found for map: Icebreaker (lookup key: icebreaker)' ],\n  href: 'http://localhost:3000/tasks',\n}\n```\n\n**Severity:** non-fatal. The map is still returned by the `mapsWithSvg` getter (without `...",
+      "source": "GitHub",
+      "url": "https://github.com/tarkovtracker-org/TarkovTracker/issues/441",
+      "timestamp": "2026-06-09T07:26:32Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4611962860",
+      "title": "New API request: Disable \"disable touchpad when typing\" feature.",
+      "description": "For games and apps who, by design, choose to use simultaneous keyboard + mouse input (such as WASD walking + mouse for looking around), suffer from Window Managers or Desktop Environments who implement \"disable touchpad when typing\" (dwt) behavior, when users have a laptop without mouse. I'd be great if SDL3 offers a cross-platform way to disable this WM/DE behavior. I was thinking to trigger this upon window gain/lost focus for my application, but I can imagine that finer-grained control can be...",
+      "source": "GitHub",
+      "url": "https://github.com/libsdl-org/SDL/issues/15780",
+      "timestamp": "2026-06-08T10:13:20Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4596137608",
+      "title": "Single-entity vs list operations disagree on the \"nothing found\" case",
+      "description": "The OpenAPI (https://skg-if.github.io/api/openapi/ver/current/skg-if-openapi.yaml) handles an empty result differently depending on the operation. A lookup by id like /products/{local_identifier} (same for persons, organisations, etc.) defines a 404. On the contrary, list and search operations define a 200 with an empty array in case of zero results.",
+      "source": "GitHub",
+      "url": "https://github.com/skg-if/api/issues/62",
+      "timestamp": "2026-06-05T10:18:28Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4592683832",
+      "title": "\"Practice\" mode \u2014 play a tune's part on a real drum and get scored on your timing",
+      "description": "Hi, and thanks for RoR Player \u2014 my local RoR group gets a lot of use out of it.\n\nI'd like to propose a new feature, and I want to be upfront about the order of events: I built it first to scratch my own itch, so I'm opening this issue *after the fact* to check whether it's something you'd actually want upstream. No obligation at all.\n\n**The idea.** A **Practice** tab where you play one instrument's part on a real drum into your microphone, and RoR Player listens and scores your timing against th...",
+      "source": "GitHub",
+      "url": "https://github.com/beatboxjs/ror-player/issues/150",
+      "timestamp": "2026-06-04T22:48:38Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4590072472",
+      "title": "Feature request: list notes for updates when running `zapp update`",
+      "description": "When running `zapp update`, it would be nice if the CLI could show the notes attached to the updates between the current version and the target version.",
+      "source": "GitHub",
+      "url": "https://github.com/zsa/zapp/issues/9",
+      "timestamp": "2026-06-04T15:42:55Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4589921902",
+      "title": "Does Hosted Pay Page support automated customer vault + recurring subscription setup?",
+      "description": "HPP appears suitable for initial one-time card payment, but Payfirma support confirmed that recurring subscription setup requires manual PayHQ/customer-vault steps and a second customer card-entry flow (manual 2nd entry by customer). This does not appear to support automated self-serve SaaS signup/cancellation. Is there an API-supported flow for vaulting a customers info, adding/removing customer from subscription plan?",
+      "source": "GitHub",
+      "url": "https://github.com/Payfirma/HostedPayPage/issues/15",
+      "timestamp": "2026-06-04T15:22:09Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4582014443",
+      "title": "Feature: Protected Objects - Runtime Object Locks for Apps/Jobs/PrivUsers",
+      "description": "### As ...\n\nTammy - Tools Integrator\n\n### I want ...\n\nA mechanism to prevent an object from being deleted or altered mid job run. \n\n### So that ...\n\nI can realistically rely on the platform being stable during long job runs (SSoT for example)\n\n### I know this is done when...\n\n- I can \"lock\" objects prior to a job running, such as at Job setup or App installation\n- I can \"unlock\" objects after a job has run (or an App uninstalled)\n- I can be assured that the Job won't fail because an expected Obj...",
+      "source": "GitHub",
+      "url": "https://github.com/nautobot/nautobot/issues/9042",
+      "timestamp": "2026-06-03T17:07:13Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4580733189",
+      "title": "Enable API for everything UI can do, with same RBAC",
+      "description": "## Original Request\n\n> Enable API for everything UI can do, with same RBAC\n\n## Agent's Two Cents (could be wrong)\n\n> Everything below is the AI agent's best guess based on the current codebase.\n> Take with a grain of salt \u2014 the original request above is the only thing that came from a human.\n\n### Problem / Motivation\n\nKener's admin UI can do many things the public/authenticated API cannot, so anyone trying to automate or provision Kener (IaC, CI, bulk imports, external dashboards) keeps hitting ...",
+      "source": "GitHub",
+      "url": "https://github.com/rajnandan1/kener/issues/738",
+      "timestamp": "2026-06-03T14:23:15Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4577031608",
+      "title": "[REVIEW] dependency-scanning: align EPSS/KEV enrichment with allowed tools",
+      "description": "## Skill Being Reviewed\n**Skill name:** `dependency-scanning`\n**Skill path:** `skills/appsec/dependency-scanning/`\n\n## False Positive Analysis\n\n**Benign scanner output that can be over-prioritized when EPSS/KEV enrichment is not actually available:**\n```json\n{\n  \"id\": \"CVE-2026-12345\",\n  \"package\": \"example-lib\",\n  \"installedVersion\": \"1.2.3\",\n  \"fixedVersion\": \"1.2.4\",\n  \"cvss\": 9.1\n}\n```\n\n**Why this can be misleading:**\n\nThe skill promises dependency triage \"by EPSS and CISA KEV\" and instructs...",
+      "source": "GitHub",
+      "url": "https://github.com/UnitOneAI/SecuritySkills/issues/203",
+      "timestamp": "2026-06-03T05:04:40Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4573444256",
+      "title": "Document querying Application Metrics via API and MCP",
+      "description": "The current [Application Metrics docs](https://docs.sentry.io/product/explore/metrics/) cover SDK setup for *sending* metrics but provide no guidance on *querying* metrics data programmatically. Two access paths exist but are undocumented:\n\n**REST API**\n- `docs.sentry.io/api/metrics/` returns 404 \u2014 no public API reference page exists for metrics\n- The public [API reference](https://docs.sentry.io/api/) has no metrics section\n- The underlying `/api/0/organizations/{org}/events/?dataset=metrics` e...",
+      "source": "GitHub",
+      "url": "https://github.com/getsentry/sentry-docs/issues/17994",
+      "timestamp": "2026-06-02T17:03:27Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4571531998",
+      "title": "Question regarding contact information hidden behind captcha protection",
+      "description": "## Description\n\nWe are a non-profit educational organization in Germany and currently develop an **internal application** assistant for job seekers.\n\nOur application uses the Jobsuche API to identify suitable job offers and generate application documents for participants.\n\nWe noticed that contact information is available for many job postings, but for a significant number of offers the contact details seem to be protected behind captcha-based mechanisms on the Arbeitsagentur platform and are the...",
+      "source": "GitHub",
+      "url": "https://github.com/bundesAPI/jobsuche-api/issues/68",
+      "timestamp": "2026-06-02T12:46:27Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4571031327",
+      "title": "[Launch] Real-Time Notifications",
+      "description": "## Overview\nDeliver real-time notifications across all platforms.\n\n## Success Criteria\n- [ ] Implement WebSockets for real-time messaging.\n- [ ] Integrate push notifications.\n- [ ] Ensure cross-device synchronization.\n\n## Dependencies\n- Backend support for notification payloads.\n\n## Rollout Plan\nPhase rollout: Team \u2192 Alpha \u2192 Beta \u2192 GA\nRelated to #1\n\n\n\n\n> Generated by [Sample Data Simulator](https://github.com/chrizbo/agentics-beyond-code/actions/runs/26813510184) \u00b7 gpt40 309.2K \u00b7 [\u25f7](https://git...",
+      "source": "GitHub",
+      "url": "https://github.com/chrizbo/agentics-beyond-code/issues/259",
+      "timestamp": "2026-06-02T11:31:52Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4570539146",
+      "title": "Xaxios.Ai API",
+      "description": "Hej, is there an API? I have premium but I wanted an API for the backend of my dashboard I'm building.\n\n/Levi",
+      "source": "GitHub",
+      "url": "https://github.com/emircan-sahin/voca/issues/7",
+      "timestamp": "2026-06-02T10:18:01Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4569277925",
+      "title": "GCWork::do_work should own `self`",
+      "description": "Currently the `GCWork::do_work` method has a `&mut self` argument.  It means it borrows self mutably.  While it has worked for a long time, it has some problems.  They can be solved by changing `&mut self` with `self`, i.e. \n\n```diff\n-    fn do_work(&mut self, worker: &mut GCWorker<VM>, mmtk: &'static MMTK<VM>);\n+    fn do_work(self, worker: &mut GCWorker<VM>, mmtk: &'static MMTK<VM>);\n```\n\nUsing `self` is OK because each `GCWork` instance is only executed once.  In fact the `do_work` methods us...",
+      "source": "GitHub",
+      "url": "https://github.com/mmtk/mmtk-core/issues/1506",
+      "timestamp": "2026-06-02T07:09:59Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4568640521",
+      "title": "[Analytics] Build Real-time Activity Feed Component",
+      "description": "## \ud83d\udd27 [Analytics & Insights Dashboard] Task\n\n### \ud83d\udcdd Description\nBuild Real-time Activity Feed Component\n\n### \ud83d\udcc1 File Path\n`frontend/src/components/analytics/ActivityFeed.jsx`\n\n### \ud83d\udccb Requirements\n1. Implement core logic\n2. Add error handling\n3. Write unit tests\n4. Ensure performance\n5. Update documentation\n\n### \u2705 Acceptance Criteria\n- [ ] Feature implemented according to requirements\n- [ ] Tests passing\n- [ ] Code reviewed\n- [ ] No regressions\n\n### \ud83d\udee0\ufe0f Tech Stack\n- React\n- TailwindCSS\n\n### \ud83d\ude80 Getting ...",
+      "source": "GitHub",
+      "url": "https://github.com/anurag3407/career-pilot/issues/2738",
+      "timestamp": "2026-06-02T05:16:26Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4562458949",
+      "title": "PRODUCT DECISION: Task assignment is delegation-only (down-rank). Peer-to-peer and sideways reassignment are not possible.",
+      "description": "## The constraint\n\n`POST /api/v1/tasks/{task_id}/delegate` is the only endpoint that changes a task's assignee. Its RBAC, enforced at `apps/api/app/application/tasks/service.py:_enforce_hierarchy`:\n\n```python\nif requester.priority >= target.priority:\n    raise DelegationForbiddenError(...)\n```\n\nA caller may only assign to someone with **strictly greater numerical priority** (strictly lower rank). The current assignee plays no role in the check.\n\nThree concrete consequences:\n\n1. **Peer-to-peer tr...",
+      "source": "GitHub",
+      "url": "https://github.com/kanea-ai/kanea-monorepo/issues/49",
+      "timestamp": "2026-06-01T10:51:32Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4588828200",
+      "title": "ISS integration shows inaccurate crew number",
+      "description": "### The problem\n\nISS integration shows inaccurate crew number.\n\nToday (4th June 2026) ISS integration shows crew size: 12, whereas according to multiple sources in reality thew crew size is 7 (wiki, https://whoisinspace.com/, https://www.nasa.gov/international-space-station/space-station-facts-and-figures/ etc).\n\n<img width=\"1110\" height=\"772\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/968dd817-42ca-4e1f-882c-f007bae2da5b\" />\n\n\n\n### What version of Home Assistant Core has the is...",
+      "source": "GitHub",
+      "url": "https://github.com/home-assistant/core/issues/173017",
+      "timestamp": "2026-06-04T12:49:35Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4573762004",
+      "title": "Support for finding users by their oidc_username via /api/v#/users",
+      "description": "**Is your feature request related to a problem? Please describe.**\nThe Kenyan CHP Registry acts as an OIDC Provider for the eCHIS Kenya CHT app.\nCHA users of the registry have a corresponding user account in eCHIS with matching `oidc_username`. \nThe CHA is assigned to N-CHUs (N-facility_ids) in both the registry and eCHIS.\nWhen a CHU is reassigned in the registry, an integration makes it so the CHU is also reassigned in CHT.\nOne step in the integration is that it needs to find and update users b...",
+      "source": "GitHub",
+      "url": "https://github.com/medic/cht-core/issues/11129",
+      "timestamp": "2026-06-02T17:52:51Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4501695846",
+      "title": "run on azure",
+      "description": "Hi\n\nDo you think it's possible to run this directly on Azure Automation account?\nLooking for an alternative to move out from the upcoming deprecation of EWS API and on-prem server\n\nThanks",
+      "source": "GitHub",
+      "url": "https://github.com/tardispilot/GraphContactSync/issues/16",
+      "timestamp": "2026-05-22T09:55:25Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4466130411",
+      "title": "Daily News Digest - 2026-05-18",
+      "description": "# 2026-05-18\n\n## RedditGo\n\n1. [Who's Hiring](https://www.reddit.com/r/golang/comments/1t0su2w/whos_hiring/)\n2. [I rewrote my Node.js API in Go (mostly stdlib). My Docker image went from 200MB to 10MB. Would love some feedback!](https://www.reddit.com/r/golang/comments/1tfgzaa/i_rewrote_my_nodejs_api_in_go_mostly_stdlib_my/)\n3. [pkg &amp; internal directories are way overused](https://www.reddit.com/r/golang/comments/1tft8ds/pkg_internal_directories_are_way_overused/)\n4. [Crazy how Go long-term m...",
+      "source": "GitHub",
+      "url": "https://github.com/ducminhgd/gossip-bot/issues/325",
+      "timestamp": "2026-05-18T03:53:15Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4460024167",
+      "title": "AR Face Mesh / Cloud Anchor / Streetscape never produce a result on device",
+      "description": "Umbrella \u2014 three AR feature demos that the tester has **never** seen work on a real device:\n- **Face Mesh** \u2014 no mesh ever appears on the face (\"j'ai jamais vu marcher \u00e7a\u2026 jamais r\u00e9ussi \u00e0 avoir un mesh\"). Possibly the front-camera stream isn't wired.\n- **Cloud Anchor** \u2014 hosting/settings broken (\"\u00e7a ne marchait plus\").\n- **Streetscape** \u2014 never resolves; sits on \"Looking for Streetscape\" forever, tried in many open outdoor locations.\n\nEach needs a real-device investigation. Split into sub-issues...",
+      "source": "GitHub",
+      "url": "https://github.com/sceneview/sceneview/issues/1436",
+      "timestamp": "2026-05-16T13:30:35Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4393431438",
+      "title": "fixes for notebooks/simple_mcp.ipynb",
+      "description": "\n- use `float` instead of `int` for types in the tools, needed as bitcoin currency is not exactly an integer\n- use `SERPAPI_API_KEY` instead of `SERP_API_KEY` (was typo)\n\n```py\nMCP_SERVER = f'''\nfrom mcp.server.fastmcp import FastMCP\nfrom langchain_community.utilities import SerpAPIWrapper\nimport os\n\nmcp = FastMCP(\"MCP Example\")\n\n@mcp.tool()\ndef add(a: float, b: float) -> float:\n    \"\"\"Add two numbers\"\"\"\n    return a + b\n\n@mcp.tool()\ndef multiply(a: float, b: float) -> float:\n    \"\"\"Multiply two...",
+      "source": "GitHub",
+      "url": "https://github.com/sinanuozdemir/oreilly-ai-agents/issues/8",
+      "timestamp": "2026-05-06T18:08:00Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4282561714",
+      "title": "Manage load caused by AI generated dashboards",
+      "description": "Our API is under a lot of stress lately and a large contributing factor to this seems to be the proliferation of AI generated \"threat intel\" dashboards which make use of it.\n\nFor example if you prompt claude to generate a dashboard that makes use of open datasets to create a comprehensive threat intel dashboard, the OONI API ends up being part of it, yet the code it will generate is not at all respectful of our API and generates a lot of unnecessary load, see for example this snippet that was pr...",
+      "source": "GitHub",
+      "url": "https://github.com/ooni/backend/issues/1180",
+      "timestamp": "2026-04-17T12:24:19Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4167319773",
+      "title": "Course Suggestion: Building Web Applications with FastAPI",
+      "description": "- Overview:\nThis course will focus on developing high-performance web applications using FastAPI, a modern web framework for building APIs with Python. Students will learn how to create RESTful services quickly and efficiently.\n\n- Rationale:\nFastAPI is gaining popularity for its speed and ease of use, making it an essential skill for developers looking to build robust APIs. This course will equip students with the knowledge to leverage FastAPI in their projects.\n\n- Key Topics:\n\n> Introduction to...",
+      "source": "GitHub",
+      "url": "https://github.com/bootdotdev/curriculum/issues/100",
+      "timestamp": "2026-03-30T04:48:10Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4153742935",
+      "title": "Python API for Doppler, level & Freq. spread (Charette#19)",
+      "description": "Investigate this through the Charette; it may be duplicative with HAPI and other API work. It may also be looking for an analysis package to automatically compute characteristics of a spectrum (see also Data Quality issues)",
+      "source": "GitHub",
+      "url": "https://github.com/Personal-Space-Weather-Station-PSWS/PSWS-Network/issues/98",
+      "timestamp": "2026-03-27T15:33:19Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4007805995",
+      "title": "API Feature Request",
+      "description": "Small API feature request, not a huge priority. Looking for an option to be able to grab how many bookings have been made for a specific event ID. Essentially the same figures as given on Dashboard under \"Allocated\". Intention is to use in our own in-house dashboards. Thanks!",
+      "source": "GitHub",
+      "url": "https://github.com/ticketsource/.github/issues/1",
+      "timestamp": "2026-03-01T17:34:03Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4001522661",
+      "title": "feat: Add code review tools",
+      "description": "## Issue Description\n\nUsers need code review capabilities within the platform.\n\n## Issue Type\n\n- [ ] Bug\n- [x] Feature Request\n- [ ] Enhancement\n- [ ] Documentation\n- [ ] Refactor\n- [ ] Other\n\n## Description\n\nImplement code review:\n- Inline commenting\n- Pull request reviews\n- Approval workflows\n- Review metrics\n- Code diff visualization\n\n## Claiming This Issue\n\n- [ ] I'm willing to solve this issue by myself",
+      "source": "GitHub",
+      "url": "https://github.com/Saatvik-GT/xaytheon/issues/679",
+      "timestamp": "2026-02-27T15:17:21Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_3996712971",
+      "title": "Proposal: Language-independent, database-free industrial postal code for precise last-mile pickup/delivery",
+      "description": "Addressing in dense Indian urban areas often fails in the \"last 30 meters\". I\u2019ve developed a mathematical coordinate-to-code system that encodes location into a unique 8-character string, optimized for high-volume logistics and offline reliability.\nKey Technical Features:\n**Human-Error Proof:** Alphabet excludes '0' and '1' to avoid confusion with 'O' and 'I'.\n**Sequential & Proximity-Aware**: Nearby positions share predictable string patterns (e.g., DBYP-ZYOV \u2192 DBYP-ZYOW), allowing proximity de...",
+      "source": "GitHub",
+      "url": "https://github.com/nammayatri/nammayatri/issues/13793",
+      "timestamp": "2026-02-26T17:06:54Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_3972417349",
+      "title": "Proposal for building data HowLongToBeat enrichment pipeline",
+      "description": "# Proposal for building data HowLongToBeat enrichment pipeline\n[howlongtobeatpy_testing.ipynb](https://github.com/user-attachments/files/25459820/howlongtobeatpy_testing.ipynb)\n[snyk advisor link of module](https://security.snyk.io/package/pip/howlongtobeatpy)\n\n## Reason for integration\n- adding features for average time to beat could improve recommendation metrics for future prediction model training\n\n## Future Enrichment Features\n- still looking for an API that can enrich the game data for mor...",
+      "source": "GitHub",
+      "url": "https://github.com/bcvilnrotter/notion-scripts/issues/23",
+      "timestamp": "2026-02-21T17:37:44Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_3937729676",
+      "title": "cloudflare_worker_errors_count{status=\"exceededMemory\"} disappears",
+      "description": "We observed that the metric:\n\n`cloudflare_worker_errors_count{status=\"exceededMemory\"}`\n\nwas previously exported correctly, then suddenly disappeared for multiple days, and later reappeared again without any configuration changes.\n\nThis seems to correlate with a Cloudflare API error logged by the exporter.\n\nWe had alerts based on:\n\nincrease(cloudflare_worker_errors_count{status=\"exceededMemory\"}[15m])\n\nbut suddenly the alert started returning no data. When checking directly in Prometheus / Thano...",
+      "source": "GitHub",
+      "url": "https://github.com/lablabs/cloudflare-exporter/issues/197",
+      "timestamp": "2026-02-13T15:28:35Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4647364482",
+      "title": "Support parse vue\uff1f",
+      "description": "Lately I'm tring to use yuku to implement a lint toolchain: https://github.com/fireairforce/utoo-lint\n\nIt will contain some Vue lint rule implementations.So I'd like to know if Yuku has any plans to provide support for a Vue parser in the future, or if I could submit a PR.",
+      "source": "GitHub",
+      "url": "https://github.com/yuku-toolchain/yuku/issues/85",
+      "timestamp": "2026-06-12T07:40:55Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4646381641",
+      "title": "Phase 3: Harden server-side OpenAI API key handling and request controls",
+      "description": "## Summary\nKeep OpenAI access strictly server-side and add the operational safeguards needed for an app-owned OpenAI API key after authenticated identity and Supabase persistence are in place.\n\n## Why third\nOnce users and persistence exist, OpenAI request handling should be tightened around the real owner model and real storage layer so later quota enforcement does not force API contract churn.\n\n## Scope\n- Ensure OpenAI API calls only happen in server routes / server-side code\n- Prevent any clie...",
+      "source": "GitHub",
+      "url": "https://github.com/eunhwa99/dreamfold/issues/8",
+      "timestamp": "2026-06-12T04:45:25Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4642348342",
+      "title": "Terraform will need to release an update that allows ipv4 for Private REST API endpoints in regions where dualstack is not available.",
+      "description": "### What new functionality are you requesting?\n\nTerraform will need to release an update that allows ipv4 for Private REST API endpoints in regions where dualstack is not available.\n\n### Description\n\nA recent update to API Gateway control service (deployed to ADC Region June 3rd) changed the response format for Private REST API endpoints in ADC regions. Previously, the API response did not include an explicit ipAddressType field in ADC regions. It now returns \"ipAddressType\": \"ipv4\".\n\nThis chang...",
+      "source": "GitHub",
+      "url": "https://github.com/hashicorp/terraform-provider-aws/issues/48356",
+      "timestamp": "2026-06-11T16:26:33Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4640849329",
+      "title": "No Summary Prompt After Auto Update",
+      "description": "### The problem\n\nThunderAI auto updated on June 10. Now it doesn't offer summary as a prompt.\n\n### Which Operative System are you using?\n\nUbunto 24.04\n\n### Which version of Thunderbird are you using?\n\n152.0b3\n\n### Which version of ThunderAI has the issue?\n\n4.1.0\n\n### Which integration are you using?\n\nChatGPT Web Interface\n\n### Anything in the Thunderbird console logs that might be useful?\n\n```txt\n\n```\n\n### Additional information\n\n_No response_",
+      "source": "GitHub",
+      "url": "https://github.com/micz/ThunderAI/issues/808",
+      "timestamp": "2026-06-11T13:20:18Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4637454596",
+      "title": "feat: work orders \u2014 NestJS module, service, and REST API",
+      "description": "## User Story\n\nAs an org member or solo player, I need a REST API for creating and managing work order sessions and individual work orders so that the frontend can drive the full lifecycle from session open to mark-sold.\n\n## Definition of Done\n\n- [ ] `WorkOrdersModule` created with controller, service, and DTOs\n- [ ] Session CRUD endpoints implemented\n- [ ] Work order CRUD endpoints implemented\n- [ ] Lifecycle endpoints implemented (submit to refinery, mark refined, mark sold, mark failed)\n- [ ]...",
+      "source": "GitHub",
+      "url": "https://github.com/GitAddRemote/station/issues/387",
+      "timestamp": "2026-06-11T05:20:43Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4636695224",
+      "title": "Microsoft Windows support status",
+      "description": "https://github.com/0xku/kon/blob/d95571a382b32311b6e91452e8cb2aaff51a9b8c/README.md?plain=1#L163\n\nIndicates not tested.\n\nThese issues indicate it may work:\n\n  * #60\n  * #59\n\nI was able to setup/install from headrevs today :-)\n\nBut running hits:\n\n\n```\n(.venv) C:\\code\\ai_llm\\kon>kon\nTraceback (most recent call last):\n  File \"C:\\code\\ai_llm\\kon\\.venv\\Lib\\site-packages\\readability\\cleaners.py\", line 4, in <module>\n    from lxml.html.clean import Cleaner\n  File \"C:\\code\\ai_llm\\kon\\.venv\\Lib\\site-pack...",
+      "source": "GitHub",
+      "url": "https://github.com/0xku/kon/issues/73",
+      "timestamp": "2026-06-11T02:36:08Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4636457702",
+      "title": "[Feature]: Move the Honcho API key and Base URL settings off Tools and onto Memory",
+      "description": "### Problem or Use Case\n\nI have a self-hosted Honcho setup with Docker on a non-standard port. While enabling Honcho from the Settings > Memory and Context menu and selecting it as the memory provider, I experienced a number of problems where Honcho would not work and errors would be reported about API key.\n\n### Proposed Solution\n\nThe problem I've discovered is that the additional settings for Honcho (for the base URL and the API key) are buried under Tools and Keys. Normally, an API key would o...",
+      "source": "GitHub",
+      "url": "https://github.com/NousResearch/hermes-agent/issues/43894",
+      "timestamp": "2026-06-11T01:44:52Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4635921009",
+      "title": "[Backlog][Reference] Bookmark public-apis directory (free APIs)",
+      "description": "## What it is\n`public-apis/public-apis` \u2014 the community directory of free public APIs (441k\u2605, very active). A **reference**, not an install.\n\n## Why bookmark it\nUseful when we need a free API for a feature, e.g.:\n- **Pincode / postal** lookups (#117 \u2014 though we decided on a bundled offline dataset, this is the fallback)\n- Currency, SMS/OTP, email-validation, geocoding, shipping\nSaves hunting for vendors each time.\n\n## Verdict\n\u2705 Just a bookmark \u2014 zero cost, zero install. Reference it when picking...",
+      "source": "GitHub",
+      "url": "https://github.com/ShubhamSachdeva311205/Vyom/issues/121",
+      "timestamp": "2026-06-10T23:49:54Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4634139016",
+      "title": "Feature Request: Add a \"Serendipity Button\" for random book discovery (External API Integration)",
+      "description": "### Is your feature request related to a problem? Please describe.\nWhen users finish reading the books on their shelves, they often struggle to decide what to read next. While organizing current books is a great core feature, there isn't currently a way to discover *new* books directly within the BiblioDrift environment to keep the \"warm bookstore\" experience going.\n\n### Describe the solution you'd like\nI propose adding a \"Serendipity Button\" (perhaps labeled \"Suggest a Book\" or a dice icon) on ...",
+      "source": "GitHub",
+      "url": "https://github.com/devanshi14malhotra/BiblioDrift/issues/1303",
+      "timestamp": "2026-06-10T18:59:07Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4631194199",
+      "title": "feat: set up local PostgreSQL via Docker and connect Go API",
+      "description": "## Context\n\nWith the database schema designed and the Go API structure in place, we need an actual running database for local development and a persistent connection from the backend. This setup will allow the backend team to start writing repository methods and saving parsed e-nose measurements.\n\n## Acceptance Criteria\n\n- [ ] Create a `docker-compose.yml` file at the root to spin up a local PostgreSQL 15+ database\n- [ ] Implement a database connection pool in Go (using `database/sql`, `pgx`, or...",
+      "source": "GitHub",
+      "url": "https://github.com/CreoCot/enose-core/issues/6",
+      "timestamp": "2026-06-10T12:29:25Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4629072574",
+      "title": "Rethink onboarding flow",
+      "description": "We need an onboarding flow for:\n\n* Import with Strava API (already exists)\n* Import through files. We need to ask the user for their personal details",
+      "source": "GitHub",
+      "url": "https://github.com/robiningelbrecht/statistics-for-strava/issues/2150",
+      "timestamp": "2026-06-10T07:37:33Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4626857640",
+      "title": "API Retrieve Guestbook Responses for a Dataverse Collection in JSON format",
+      "description": "When a sub-collection uses guestbooks inherited from its parent collection, we need to retrieve the guestbook responses using a specific Dataverse collection ID.\n\nWe have an api similarly but in csv format [Retrieve Guestbook Responses for a Dataverse Collection](https://guides.dataverse.org/en/latest/api/native-api.html#id72) in Native API, but we also need return responses in JSON format.\n\nCan we extend this API to support a Dataverse collection ID as well?\n`curl -H  \"X-Dataverse-key:$API_TOKE...",
+      "source": "GitHub",
+      "url": "https://github.com/IQSS/dataverse/issues/12451",
+      "timestamp": "2026-06-10T00:48:26Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4624394771",
+      "title": "Create API for Time series database",
+      "description": "## User story\n1. As a dev\n2. I need an API for the timesensitive database\n3. So that we can write and retreive data\n\n## Acceptance criteria\n* Define a general database schema for storing device, application logs\n* Define the required API calls, including request and response structures\n* Document the scheme so every dev has access and can use it\n\n## Definition of done (DoD)\n* All Acceptance criterias defined in the backlog item are met and verified\n* Work done is pushed to the Github repository\n...",
+      "source": "GitHub",
+      "url": "https://github.com/amosproj/amos2026ss01-zero-downtime-linux-updates/issues/103",
+      "timestamp": "2026-06-09T18:05:42Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4608912657",
+      "title": "FHIR Bug Issues Thread",
+      "description": "Tldr; New FHIR dataloading support has been added, but barely tested.\n\nWe can do MIMIC4FHIR with an EHRMamba pipeline, and we've written an API for people to use it. But we need help testing it.\n\n",
+      "source": "GitHub",
+      "url": "https://github.com/sunlabuiuc/PyHealth/issues/1157",
+      "timestamp": "2026-06-07T22:22:59Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4605291559",
+      "title": "stock price api",
+      "description": "please begin to implement a robust api for the application.  you need to find an external source to regularlly import stock price/market data.",
+      "source": "GitHub",
+      "url": "https://github.com/7r3y70dd/cognimoss-test/issues/9",
+      "timestamp": "2026-06-06T22:14:04Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4603996917",
+      "title": "Request for API access: [Your Name]",
+      "description": "* **Please tell us about yourself (include an email address):**\n  <!-- Please provide your name and email address -->\n\n\n\n* **Your purpose in using this API:**\n  <!-- Details about how you will use in for example your website, application or research -->\n\n\n\n* **API rate limits:**\n  <!-- There are two dimensions in our rate limiting policy: maximum requests per second and maximum requests per day -->\n   * **Maximum requests per second:**\n   * **Maximum requests per day:**\n\n\n\n* **Is your use case b...",
+      "source": "GitHub",
+      "url": "https://github.com/sunnah-com/api/issues/3253",
+      "timestamp": "2026-06-06T15:13:09Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4596692227",
+      "title": "API key scopes select-all control is difficult to reach with NVDA",
+      "description": "## Bug Description\n\nIn the API key create modal, the Scopes multi-select includes a \"Select All\" checkbox inside the select dropdown header. With NVDA on Windows, this control is difficult to discover and reach because it is nested inside the combobox/listbox popup rather than being exposed as a standalone checkbox in the modal flow.\n\nThis creates an accessibility problem for blind users who need to select all API key scopes. NVDA reads the Scopes field as a select/combobox, but the separate sel...",
+      "source": "GitHub",
+      "url": "https://github.com/n8n-io/n8n/issues/31821",
+      "timestamp": "2026-06-05T11:53:20Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4594257263",
+      "title": "Submit Tool: FerryAPI",
+      "description": "## Tool Details\n\n**Name:** FerryAPI\n\n**Website URL:** https://www.ferryapi.io/\n\n**Category:** DevTools\n\n**Pricing:** Freemium\n\n**Short description (1 sentence):** OpenAI-compatible AI API gateway for usage billing and customer API keys.\n\n**Why should it be included?**\n\nFerryAPI is useful for developers and SaaS teams that need an OpenAI-compatible API gateway layer for production AI features. It focuses on practical gateway operations such as customer-facing API keys, prepaid balance workflows, ...",
+      "source": "GitHub",
+      "url": "https://github.com/best-of-ai/best-of-ai/issues/54",
+      "timestamp": "2026-06-05T04:42:20Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4592683832",
+      "title": "\"Practice\" mode \u2014 play a tune's part on a real drum and get scored on your timing",
+      "description": "Hi, and thanks for RoR Player \u2014 my local RoR group gets a lot of use out of it.\n\nI'd like to propose a new feature, and I want to be upfront about the order of events: I built it first to scratch my own itch, so I'm opening this issue *after the fact* to check whether it's something you'd actually want upstream. No obligation at all.\n\n**The idea.** A **Practice** tab where you play one instrument's part on a real drum into your microphone, and RoR Player listens and scores your timing against th...",
+      "source": "GitHub",
+      "url": "https://github.com/beatboxjs/ror-player/issues/150",
+      "timestamp": "2026-06-04T22:48:38Z",
+      "status": "pending"
+    },
+    {
+      "id": "gh_4591563663",
+      "title": "bug(aria/combobox): Focus management and a11y regressions: Combobox missing readonly, Select disabled is focusable",
+      "description": "### Is this a regression?\n\n- [x] Yes, this behavior used to work in the previous version\n\n### The previous version in which this bug was not present was\n\n21.2.12\n\n### Description\nThere are two critical accessibility (WCAG) and focus management regressions in the `@angular/aria` package regarding how `readonly` and `disabled` states are handled across `Combobox` and `Select` components.\n\n#### Issue 1: Combobox missing `readonly` support\nIn PR #33206, the `readonly` support seems to have been remo...",
+      "source": "GitHub",
+      "url": "https://github.com/angular/components/issues/33352",
+      "timestamp": "2026-06-04T19:26:55Z",
+      "status": "pending"
+    }
+  ],
+  "apis": [
+    {
+      "api_name": "GDPR Data Retention Lifespan Engine",
+      "description": "Stateless API to evaluate data retention. POST /evaluate accepts JSON with 'data_category' (e.g., 'marketing', 'financial'), 'creation_date' (YYYY-MM-DD), and 'current_date' (YYYY-MM-DD). Return JSON with 'retention_years' (int), 'days_remaining' (int), and 'cleanup_flag' (boolean, true if current_date is past the retention period). Use 3 years for marketing, 7 for financial",
+      "timestamp": "2026-06-13T22:53:38.426938",
+      "directory": "builds\\GDPRDataRetentionLifespanEngine",
+      "files": [
+        "main.py",
+        "test_main.py",
+        "requirements.txt"
+      ],
+      "status": "success",
+      "error": null
+    },
+    {
+      "api_name": "Advanced Quantitative Risk Ratio Calculator",
+      "description": "Stateless API to calculate risk. POST /risk-ratios accepts JSON with 'daily_returns' (list of floats) and 'risk_free_rate' (float). Returns JSON with 'sharpe_ratio' (float), 'sortino_ratio' (float), and 'calmar_ratio' (float). Handle zero-division. IMPORTANT: 1. Make the root endpoint '/' return a simple 200 OK JSON message (do NOT use RedirectResponse). 2. You are STRICTLY RESTRICTED to the Python Standard Library. DO NOT import external libraries.",
+      "timestamp": "2026-06-13T23:42:27.829047",
+      "directory": "builds\\AdvancedQuantitativeRiskRatioCalculator",
+      "files": [
+        "main.py",
+        "test_main.py",
+        "requirements.txt"
+      ],
+      "status": "success",
+      "error": null
+    },
+    {
+      "api_name": "E-Commerce Discount Tier Rules Optimizer",
+      "description": "Stateless API for coupons. POST /discount-apply accepts JSON with 'cart_total' (float) and 'active_promos' (list of dicts: threshold, discount_pct). Returns JSON with 'best_promo_applied' (string), 'discount_amount' (float), and 'final_total' (float).You are STRICTLY RESTRICTED to the Python Standard Library. DO NOT import external libraries.",
+      "timestamp": "2026-06-13T23:51:49.226662",
+      "directory": "builds\\E-CommerceDiscountTierRulesOptimizer",
+      "files": [
+        "main.py",
+        "test_main.py",
+        "requirements.txt"
+      ],
+      "status": "success",
+      "error": null
+    },
+    {
+      "api_name": "Dynamic QR Code Configuration Helper",
+      "description": "Stateless API for QR payloads. POST /qr-config accepts JSON with 'payload_type' (enum: url, wifi, vcard) and 'data' (dict). Returns JSON with 'encoded_string' (string) and 'recommended_error_correction_level' (string).You are STRICTLY RESTRICTED to the Python Standard Library. DO NOT import external libraries.",
+      "timestamp": "2026-06-14T00:03:42.924070",
+      "directory": "builds\\DynamicQRCodeConfigurationHelper",
+      "files": [
+        "main.py",
+        "test_main.py",
+        "requirements.txt"
+      ],
+      "status": "success",
+      "error": null
+    }
+  ]
+}

@@ -8,17 +8,13 @@ class Generator:
 
     def _clean_code(self, code: str) -> str:
         """
-        Removes markdown code fences (e.g. ```python) and conversational lines
-        that LLMs sometimes accidentally slip inside the demarcated blocks.
+        Removes markdown code fences (e.g. ```python) that LLMs sometimes include.
         """
         lines = code.split('\n')
         cleaned_lines = []
         for line in lines:
-            # Skip markdown code blocks
+            # Skip lines that start with ```
             if line.strip().startswith("```"):
-                continue
-            # Skip accidental conversational filler lines if they leak into the top of the block
-            if not cleaned_lines and (line.strip().lower().startswith("here is") or line.strip().lower().startswith("here's")):
                 continue
             cleaned_lines.append(line)
         return '\n'.join(cleaned_lines).strip()
@@ -51,13 +47,11 @@ class Generator:
             "   - Always write synchronous test functions using `from fastapi.testclient import TestClient`.\n"
             "   - Do NOT use `async def` for test functions.\n"
             "   - Do NOT use `await` with `client.get`, `client.post`, etc. FastAPI's `TestClient` is synchronous.\n"
-            "   - IMPORTANT: FastAPI's TestClient follows redirects by default! When writing the test for the root path (`/`) redirect, you MUST pass `follow_redirects=False` to check the actual redirect status code (e.g., `response = client.get('/', follow_redirects=False)`), otherwise it will follow through to `/docs` and return a 200, causing your redirect test to fail.\n"
             "7. CRITICAL TEST STATE ISOLATION:\n"
             "   - Because tests run in the same process, they share the global in-memory rate-limiting dictionary state (all requests from `TestClient` default to IP `127.0.0.1`).\n"
             "   - To prevent test crosstalk (where one test's requests cause another test to fail with 402), you MUST import the global rate limit dictionary inside the test functions and clear it (e.g., `from main import RATE_LIMITS` then `RATE_LIMITS.clear()`) at the start of every test case.\n"
             "   - You MUST write a test that verifies unauthenticated requests succeed up to the limit and then return 402 once exceeded, AND a test verifying valid API keys bypass this limit.\n"
-            "8. STRICT FORMATTING RULE:\n"
-            "   - Do not include any conversational explanations, introductions, or markdown fences inside or outside the demarcated blocks. Output raw code inside the structural tokens only."
+            "Provide your output exactly in the requested XML-style format."
         )
 
         prompt = f"""
@@ -108,15 +102,8 @@ Generate the complete codebase. You must format your response exactly like this:
             "   - Always write synchronous test functions using `from fastapi.testclient import TestClient`.\n"
             "   - Do NOT use `async def` for test functions.\n"
             "   - Do NOT use `await` with `client.get`, `client.post`, etc. FastAPI's `TestClient` is synchronous.\n"
-            "   - IMPORTANT: To test the root redirect, you MUST use `client.get('/', follow_redirects=False)`. If you do not pass `follow_redirects=False`, the client will return a 200 OK from the docs page, which will break your assertions.\n"
-            "6. CRITICAL TESTING RULES:\n"
-            "   - Always write synchronous test functions using `from fastapi.testclient import TestClient`.\n"
-            "   - Do NOT use `async def` for test functions and do NOT use `@pytest.mark.asyncio`.\n"
-            "   - Do NOT use `await` with `client.get`, `client.post`, etc. FastAPI's `TestClient` is synchronous.\n"
-            "   - To test or mock an async operation (like `httpx.AsyncClient.get`), keep the test function synchronous (`def test_...`), use `unittest.mock.patch` or the `mocker` fixture, and assign a `unittest.mock.AsyncMock` object as the return value for the async call. This allows synchronous tests to smoothly mock internal async dependencies.\n"
-            "   - IMPORTANT: To assert the root redirect destination, cast the URL to a string: `str(response.url).endswith('/docs')`. Do not call `.endswith()` directly on the `response.url` object as it is an HTTPX URL object type, not a string.\n"
-            "7. STRICT FORMATTING RULE:\n"
-            "   - Return ONLY the exact structural code blocks. Absolutely no chat, markdown blocks (```), or extra text commentary inside or outside the tokens."
+            "6. CRITICAL TEST STATE ISOLATION:\n"
+            "   - You MUST import the global rate limit dictionary inside your test functions and clear it (e.g., `from main import RATE_LIMITS` then `RATE_LIMITS.clear()`) at the start of every test case. This is crucial because pytest runs all tests in the same process, meaning they share the client IP address (127.0.0.1) and will trigger the 402 limit prematurely due to crosstalk."
         )
 
         prompt = f"""

@@ -2,23 +2,29 @@ import os
 import shutil
 import re
 
-def main():
+def main(api_dirs_override=None):
     print("=== Building Unified API Hub ===")
     base_dir = os.path.dirname(os.path.abspath(__file__))
     builds_dir = os.path.join(base_dir, "builds")
     hub_dir = os.path.join(builds_dir, "APIHub")
     apps_dir = os.path.join(hub_dir, "apps")
     
+    # Clear and recreate apps directory to avoid keeping unselected APIs
+    if os.path.exists(apps_dir):
+        shutil.rmtree(apps_dir)
     os.makedirs(apps_dir, exist_ok=True)
     open(os.path.join(apps_dir, "__init__.py"), "w").close()
 
     # Find all API directories
-    api_dirs = []
-    for d in os.listdir(builds_dir):
-        full_path = os.path.join(builds_dir, d)
-        if os.path.isdir(full_path) and d != "APIHub" and not d.startswith("."):
-            if os.path.exists(os.path.join(full_path, "main.py")):
-                api_dirs.append(d)
+    if api_dirs_override is not None:
+        api_dirs = api_dirs_override
+    else:
+        api_dirs = []
+        for d in os.listdir(builds_dir):
+            full_path = os.path.join(builds_dir, d)
+            if os.path.isdir(full_path) and d != "APIHub" and not d.startswith("."):
+                if os.path.exists(os.path.join(full_path, "main.py")):
+                    api_dirs.append(d)
 
     print(f"Found {len(api_dirs)} APIs to merge: {api_dirs}")
 
@@ -405,7 +411,7 @@ pinned: false
 ---
 
 # Developer API Suite
-All-in-one suite of 10 micro-services with unified landing page and monetization!
+All-in-one suite of {len(api_dirs)} micro-services with unified landing page!
 """
     with open(os.path.join(hub_dir, "README.md"), "w", encoding="utf-8") as f:
         f.write(readme_content)

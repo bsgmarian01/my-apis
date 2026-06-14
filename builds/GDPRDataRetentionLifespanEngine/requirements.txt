@@ -1,4 +1,4 @@
 fastapi
 uvicorn
 pytest
-pydantic
+httpx

@@ -23,7 +23,7 @@ class Planner:
             "reliably (e.g. specialized text parsers, file format converters, data validators, mockup generators). "
             "Provide your response in raw JSON format matching this schema:\n"
             "{\n"
-            "  \"name\": \"short-kebab-case-slug\",\n"
+            "  \"name\": \"CamelCaseName\",\n"
             "  \"title\": \"Human Readable Title\",\n"
             "  \"description\": \"Detailed description of the API\",\n"
             "  \"category\": \"Developer Tools / Data / Utility\",\n"
@@ -36,10 +36,7 @@ class Planner:
             "      \"sample_response_body\": {}\n"
             "    }\n"
             "  ]\n"
-            "}\n\n"
-            "CRITICAL NAMING RULE:\n"
-            "The \"name\" field MUST be a clean, 2-3 word lowercase hyphenated slug (e.g., 'league-logos', 'pdf-converter', 'iban-validator'). "
-            "NEVER turn a whole sentence into a name, and do not use CamelCase. This field is used directly for folder, GitHub, and Hugging Face repository names."
+            "}"
         )
         
         prompt = "Propose one unique high-utility API microservice."

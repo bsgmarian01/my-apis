@@ -1,0 +1,4 @@
+fastapi==0.78.1
+uvicorn==0.20.0
+httpx2==0.16.0  # Suggested by the deprecation warning to install httpx2
+pytest==9.1.0

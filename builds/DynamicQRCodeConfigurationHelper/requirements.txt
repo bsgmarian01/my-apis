@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+pydantic
+pytest
+httpx
+starlette  # No need to specify a version here, as starlette2 is not available and the warning suggests using httpx instead of starlette.testclient.

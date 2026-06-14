@@ -8,7 +8,16 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 # Import all sub-apps
+from apps.advancedquantitativeriskratiocalculator import app as advancedquantitativeriskratiocalculator_app
 from apps.creditcardvalidator import app as creditcardvalidator_app
+from apps.datetimeformatchecker import app as datetimeformatchecker_app
+from apps.dynamicqrcodeconfigurationhelper import app as dynamicqrcodeconfigurationhelper_app
+from apps.e_commercediscounttierrulesoptimizer import app as e_commercediscounttierrulesoptimizer_app
+from apps.emailvalidator import app as emailvalidator_app
+from apps.gdprdataretentionlifespanengine import app as gdprdataretentionlifespanengine_app
+from apps.passwordstrengthanalyzer import app as passwordstrengthanalyzer_app
+from apps.saasfailedpaymentintelligentrecoveryengine import app as saasfailedpaymentintelligentrecoveryengine_app
+from apps.saas_failed_payment_recovery.main import app as payment_recovery_app
 
 app = FastAPI(
     title="Developer API Suite",
@@ -25,7 +34,16 @@ app.add_middleware(
 )
 
 # Mount all sub-apps
+app.mount("/advancedquantitativeriskratiocalculator", advancedquantitativeriskratiocalculator_app)
 app.mount("/creditcardvalidator", creditcardvalidator_app)
+app.mount("/datetimeformatchecker", datetimeformatchecker_app)
+app.mount("/dynamicqrcodeconfigurationhelper", dynamicqrcodeconfigurationhelper_app)
+app.mount("/e_commercediscounttierrulesoptimizer", e_commercediscounttierrulesoptimizer_app)
+app.mount("/emailvalidator", emailvalidator_app)
+app.mount("/gdprdataretentionlifespanengine", gdprdataretentionlifespanengine_app)
+app.mount("/passwordstrengthanalyzer", passwordstrengthanalyzer_app)
+app.mount("/saasfailedpaymentintelligentrecoveryengine", saasfailedpaymentintelligentrecoveryengine_app)
+app.mount("/payment-recovery", payment_recovery_app)
 
 @app.get("/", response_class=HTMLResponse, include_in_schema=False)
 async def dashboard():
@@ -66,7 +84,7 @@ async def dashboard():
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
-                    1 powerful microservices in one single endpoint.
+                    9 powerful microservices in one single endpoint.
                 </h1>
                 <p class="text-lg text-gray-400">
                     A suite of high-performance utility APIs designed for developers.
@@ -75,6 +93,26 @@ async def dashboard():
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     
+                <!-- Card for AdvancedQuantitativeRiskRatioCalculator -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">AdvancedQuantitativeRiskRatioCalculator</span>
+                            <span class="text-xs text-gray-500">Active</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Advanced Quantitative Risk Ratio Calculator</h3>
+                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
+                        <a href="/advancedquantitativeriskratiocalculator/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
+                        </a>
+                        <button onclick="openPlayground('advancedquantitativeriskratiocalculator')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
+                            Try It
+                        </button>
+                    </div>
+                </div>
+        
                 <!-- Card for CreditCardValidator -->
                 <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
                     <div>
@@ -90,6 +128,146 @@ async def dashboard():
                             API Docs <i class="fas fa-external-link-alt text-xs"></i>
                         </a>
                         <button onclick="openPlayground('creditcardvalidator')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
+                            Try It
+                        </button>
+                    </div>
+                </div>
+        
+                <!-- Card for DateTimeFormatChecker -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">DateTimeFormatChecker</span>
+                            <span class="text-xs text-gray-500">Active</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Date Time Format Checker</h3>
+                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
+                        <a href="/datetimeformatchecker/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
+                        </a>
+                        <button onclick="openPlayground('datetimeformatchecker')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
+                            Try It
+                        </button>
+                    </div>
+                </div>
+        
+                <!-- Card for DynamicQRCodeConfigurationHelper -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">DynamicQRCodeConfigurationHelper</span>
+                            <span class="text-xs text-gray-500">Active</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Dynamic Q R Code Configuration Helper</h3>
+                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
+                        <a href="/dynamicqrcodeconfigurationhelper/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
+                        </a>
+                        <button onclick="openPlayground('dynamicqrcodeconfigurationhelper')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
+                            Try It
+                        </button>
+                    </div>
+                </div>
+        
+                <!-- Card for E-CommerceDiscountTierRulesOptimizer -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">E-CommerceDiscountTierRulesOptimizer</span>
+                            <span class="text-xs text-gray-500">Active</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">E- Commerce Discount Tier Rules Optimizer</h3>
+                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
+                        <a href="/e-commercediscounttierrulesoptimizer/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
+                        </a>
+                        <button onclick="openPlayground('e-commercediscounttierrulesoptimizer')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
+                            Try It
+                        </button>
+                    </div>
+                </div>
+        
+                <!-- Card for EmailValidator -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">EmailValidator</span>
+                            <span class="text-xs text-gray-500">Active</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Email Validator</h3>
+                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
+                        <a href="/emailvalidator/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
+                        </a>
+                        <button onclick="openPlayground('emailvalidator')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
+                            Try It
+                        </button>
+                    </div>
+                </div>
+        
+                <!-- Card for GDPRDataRetentionLifespanEngine -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">GDPRDataRetentionLifespanEngine</span>
+                            <span class="text-xs text-gray-500">Active</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">G D P R Data Retention Lifespan Engine</h3>
+                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
+                        <a href="/gdprdataretentionlifespanengine/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
+                        </a>
+                        <button onclick="openPlayground('gdprdataretentionlifespanengine')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
+                            Try It
+                        </button>
+                    </div>
+                </div>
+        
+                <!-- Card for PasswordStrengthAnalyzer -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">PasswordStrengthAnalyzer</span>
+                            <span class="text-xs text-gray-500">Active</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Password Strength Analyzer</h3>
+                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
+                        <a href="/passwordstrengthanalyzer/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
+                        </a>
+                        <button onclick="openPlayground('passwordstrengthanalyzer')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
+                            Try It
+                        </button>
+                    </div>
+                </div>
+        
+                <!-- Card for SaaSFailedPaymentIntelligentRecoveryEngine -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">SaaSFailedPaymentIntelligentRecoveryEngine</span>
+                            <span class="text-xs text-gray-500">Active</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Saa S Failed Payment Intelligent Recovery Engine</h3>
+                        <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
+                        <a href="/saasfailedpaymentintelligentrecoveryengine/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+                            API Docs <i class="fas fa-external-link-alt text-xs"></i>
+                        </a>
+                        <button onclick="openPlayground('saasfailedpaymentintelligentrecoveryengine')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
                             Try It
                         </button>
                     </div>
