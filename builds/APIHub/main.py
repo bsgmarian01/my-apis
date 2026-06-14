@@ -16,7 +16,6 @@ from apps.e_commercediscounttierrulesoptimizer import app as e_commercediscountt
 from apps.emailvalidator import app as emailvalidator_app
 from apps.gdprdataretentionlifespanengine import app as gdprdataretentionlifespanengine_app
 from apps.passwordstrengthanalyzer import app as passwordstrengthanalyzer_app
-from apps.saasfailedpaymentintelligentrecoveryengine import app as saasfailedpaymentintelligentrecoveryengine_app
 from apps.saas_failed_payment_recovery.main import app as payment_recovery_app
 
 app = FastAPI(
@@ -42,7 +41,6 @@ app.mount("/e_commercediscounttierrulesoptimizer", e_commercediscounttierrulesop
 app.mount("/emailvalidator", emailvalidator_app)
 app.mount("/gdprdataretentionlifespanengine", gdprdataretentionlifespanengine_app)
 app.mount("/passwordstrengthanalyzer", passwordstrengthanalyzer_app)
-app.mount("/saasfailedpaymentintelligentrecoveryengine", saasfailedpaymentintelligentrecoveryengine_app)
 app.mount("/payment-recovery", payment_recovery_app)
 
 @app.get("/", response_class=HTMLResponse, include_in_schema=False)
