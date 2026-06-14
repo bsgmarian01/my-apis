@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 # Import all sub-apps
-from apps.advancedquantitativeriskratiocalculator import app as advancedquantitativeriskratiocalculator_app
+from apps.creditcardvalidator import app as creditcardvalidator_app
 
 app = FastAPI(
     title="Developer API Suite",
@@ -25,7 +25,7 @@ app.add_middleware(
 )
 
 # Mount all sub-apps
-app.mount("/advancedquantitativeriskratiocalculator", advancedquantitativeriskratiocalculator_app)
+app.mount("/creditcardvalidator", creditcardvalidator_app)
 
 @app.get("/", response_class=HTMLResponse, include_in_schema=False)
 async def dashboard():
@@ -75,21 +75,21 @@ async def dashboard():
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     
-                <!-- Card for AdvancedQuantitativeRiskRatioCalculator -->
+                <!-- Card for CreditCardValidator -->
                 <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300">
                     <div>
                         <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">AdvancedQuantitativeRiskRatioCalculator</span>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full">CreditCardValidator</span>
                             <span class="text-xs text-gray-500">Active</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Advanced Quantitative Risk Ratio Calculator</h3>
+                        <h3 class="text-xl font-bold text-white mb-2">Credit Card Validator</h3>
                         <p class="text-sm text-gray-400 mb-6">Validate, convert, and parse data with high performance.</p>
                     </div>
                     <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-800/60">
-                        <a href="/advancedquantitativeriskratiocalculator/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+                        <a href="/creditcardvalidator/docs" target="_blank" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
                             API Docs <i class="fas fa-external-link-alt text-xs"></i>
                         </a>
-                        <button onclick="openPlayground('advancedquantitativeriskratiocalculator')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
+                        <button onclick="openPlayground('creditcardvalidator')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors">
                             Try It
                         </button>
                     </div>

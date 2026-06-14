@@ -1,7 +1,7 @@
-[packages]
 fastapi
 httpx
 jinja2
 pydantic
 pytest
+python-dotenv
 uvicorn
